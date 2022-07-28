@@ -96,7 +96,7 @@ ProductosInfo.forEach((joyas) => {
                       <p class="card-text">$ ${joyas.precio}</p>
                       <p class="card-text"> <class="${joyas.categoria}"> Category: ${joyas.categoria}</p>
                       <p class="card-text"> Product ID: ${joyas.id} </p>
-                      <button class="card-button">Add to car ${joyas.id}</button>
+                      <button class="card-button">Add to car <p hidden>${joyas.id}</p></button>
                 </div>
             </div>
     </div>

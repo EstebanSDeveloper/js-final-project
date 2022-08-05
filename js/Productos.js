@@ -74,15 +74,33 @@ const productos = [
 
 ]
 
+// ALMACENAR LA INFORMACION EN LOCAL STORAGE
 
-let productosEnCarro = [];
+let aux = localStorage.getItem('productosEnCarro')
+let productosEnCarro;
+
+if (!aux) {
+   productosEnCarro = [];
+}else{
+   productosEnCarro = JSON.parse(aux);
+   pintarProductosEnCarro();
+}
 
 
 // FUNCION METER AL CARRO QUE ESTA ANCLADA AL ONCLICK DEL BOTON DE ABAJO
 
 function meterAlCarro(objetoProducto) {
    productosEnCarro.push(objetoProducto);
-   pintarProductosEnCarro()
+   localStorage.setItem('productosEnCarro', JSON.stringify(productosEnCarro));
+   pintarProductosEnCarro();  
+}
+
+//FUNCION BORRAR DEL CARRO
+
+function borrarDelCarro(id) {
+   productosEnCarro.splice(id, 1);
+   localStorage.setItem('productosEnCarro', JSON.stringify(productosEnCarro));
+   pintarProductosEnCarro();  
 }
 
 // FUNCION PARA CREAR PRODUCTOS
@@ -91,7 +109,8 @@ function pintarListadoDeProductos (){
    let aux = '';
    for (let i = 0; i < productos.length; i++) {
        // este aux = aux + es un acumulador, como let aux comienza vacia alli le agrego lo primero y le va a gregando lo siguiente y asi etc
-       aux = aux +
+       aux =
+       aux +
     `<div class="col store-product ${productos[i].categoria}">
             <div class="card h-100">
             <img src="${productos[i].img}" class="card-img-top" alt="...">
@@ -114,8 +133,7 @@ function pintarListadoDeProductos (){
 pintarListadoDeProductos()
 
 
-
-//FUNCION PRODUCTOS EN EL CARRO
+//FUNCION PINTAR PRODUCTOS EN EL CARRO
 
 function pintarProductosEnCarro(){
    let aux = '';
@@ -130,7 +148,7 @@ function pintarProductosEnCarro(){
                      <p class="card-text">$ ${productosEnCarro[i].precio}</p>
                      <p class="card-text"> <class="${productosEnCarro[i].categoria}"> Category: ${productosEnCarro[i].categoria}</p>
                      <p class="card-text"> Product ID: ${productosEnCarro[i].id} </p>
-                     <button onclick="meterAlCarro({ID: ${productosEnCarro[i].id}, nombre: '${productosEnCarro[i].nombre}', precio: ${productosEnCarro[i].precio}}), " class="card-button toast-position">Delete Product <p hidden>${productosEnCarro[i].id}</p></button>
+                     <button onclick="borrarDelCarro(${i})" class="card-button toast-position">Delete Product<p hidden>${productosEnCarro[i].id}</p></button>
                </div>
            </div>
    </div>
@@ -171,23 +189,9 @@ for (i = 0; i < btns.length; i++) {
 
 // FIN FILTRADO DE PRODUCTOS
 
-// FUNCION GUARDAR FILTRO
 
-// ALMACENAR LA INFORMACION
 
-localStorage.setItem("filtroGuardado", JSON.stringify(storeProducts));
-//let aux = localStorage.getItem("filtroGuardado");
 
-function obtenerlocal() {
-   let nombre = JSON.parse(localStorage.getItem("filtroGuardado"));
-   console.log(nombre);
-}
-
-obtenerlocal();
-
-//et productosFiltradosStorage = JSON.parse(aux);
-
-//console.log(productosFiltradosStorage);
 
 
 

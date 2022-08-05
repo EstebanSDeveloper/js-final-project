@@ -70,11 +70,12 @@ const productos = [
     precio: 200,
     categoria: "Bracelets",
  },
+ 
 
-];
+]
+
 
 let productosEnCarro = [];
-
 
 
 // FUNCION METER AL CARRO QUE ESTA ANCLADA AL ONCLICK DEL BOTON DE ABAJO
@@ -99,7 +100,7 @@ function pintarListadoDeProductos (){
                       <p class="card-text">$ ${productos[i].precio}</p>
                       <p class="card-text"> <class="${productos[i].categoria}"> Category: ${productos[i].categoria}</p>
                       <p class="card-text"> Product ID: ${productos[i].id} </p>
-                      <button onclick="meterAlCarro({ID: ${productos[i].id}, nombre: '${productos[i].nombre}', precio: ${productos[i].precio}})" class="card-button">Add to car <p hidden>${productos[i].id}</p></button>
+                      <button onclick="meterAlCarro({ID: ${productos[i].id}, nombre: '${productos[i].nombre}', precio: ${productos[i].precio}}), clickAdd()" class="card-button">Add to car <p hidden>${productos[i].id}</p></button>
                 </div>
             </div>
     </div>
@@ -129,7 +130,7 @@ function pintarProductosEnCarro(){
                      <p class="card-text">$ ${productosEnCarro[i].precio}</p>
                      <p class="card-text"> <class="${productosEnCarro[i].categoria}"> Category: ${productosEnCarro[i].categoria}</p>
                      <p class="card-text"> Product ID: ${productosEnCarro[i].id} </p>
-                     <button onclick="meterAlCarro({ID: ${productosEnCarro[i].id}, nombre: '${productosEnCarro[i].nombre}', precio: ${productosEnCarro[i].precio}})" class="card-button">Delete Product <p hidden>${productosEnCarro[i].id}</p></button>
+                     <button onclick="meterAlCarro({ID: ${productosEnCarro[i].id}, nombre: '${productosEnCarro[i].nombre}', precio: ${productosEnCarro[i].precio}}), " class="card-button toast-position">Delete Product <p hidden>${productosEnCarro[i].id}</p></button>
                </div>
            </div>
    </div>
@@ -189,4 +190,25 @@ obtenerlocal();
 //console.log(productosFiltradosStorage);
 
 
+
+
+// TOASTIFY
+
+function clickAdd() {
+   Toastify({
+      text: "Added to Car !",
+      duration: 3000,
+      gravity: 'bottom',
+      position: 'right',
+      style: {
+          background: '#e9e2c4',
+          color: '#000000',
+          border: '10px',     
+         },
+      // para poner una clase de css
+      className: 'card-button',
+      
+
+  }).showToast();
+}
 
